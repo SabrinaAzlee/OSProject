@@ -23,8 +23,11 @@ Team Mates:
 
 ***Questions:***
 
-1. What is the link of the fork OSProject in your repository. ***(1 mark)*** __Fill answer here__.
-2. How many files and folders are in this repository. ***(1 mark)*** __Fill answer here__.
+1. What is the link of the fork OSProject in your repository. ***(1 mark)*** 
+https://github.com/SabrinaAzlee/OSProject .
+
+2. How many files and folders are in this repository. ***(1 mark)*** 
+There are 1 file called 'read.md' and 1 folder called images. The images folder has 5 png files.
 
 
 ## Exploring github codespaces
@@ -56,9 +59,15 @@ Team Mates:
 
 ***Questions:***
 
-1. What is default OS used to run the virtual environment for codespaces. ***(1 mark)*** __Fill answer here__.
-2. What are the two options of ram, disk and vcpu configuration you can have in running codespaces . ***(1 mark)*** __Fill answer here__.
-3. Why must we commit and sync our current work on source control? ***(1 mark)*** __Fill answer here__.
+1. What is default OS used to run the virtual environment for codespaces. ***(1 mark)*** 
+Ubuntu Linux.
+
+2. What are the two options of ram, disk and vcpu configuration you can have in running codespaces . ***(1 mark)*** 
+- 8GB RAM, 32GB disk, 2-core vcpu
+- 16GB RAM, 32BB disk. 4-core vcpu
+
+3. Why must we commit and sync our current work on source control? ***(1 mark)*** 
+To ensure that all of the works are saved and backed up into the main repository. It is also important to ensure a systematic collaboration handling as it allows collaborators to have access to the latest change of the file.
 
 ## Exploring the Terminal
 
