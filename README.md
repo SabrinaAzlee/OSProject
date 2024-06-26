@@ -24,10 +24,12 @@ Team Mates:
 ***Questions:***
 
 1. What is the link of the fork OSProject in your repository. ***(1 mark)*** 
-https://github.com/SabrinaAzlee/OSProject .
+
+__https://github.com/SabrinaAzlee/OSProject .__
 
 2. How many files and folders are in this repository. ***(1 mark)*** 
-There are 1 file called 'read.md' and 1 folder called images. The images folder has 5 png files.
+
+__There are 1 file called 'read.md' and 1 folder called images. The images folder has 5 png files.__
 
 
 ## Exploring github codespaces
@@ -59,15 +61,18 @@ There are 1 file called 'read.md' and 1 folder called images. The images folder 
 
 ***Questions:***
 
-1. What is default OS used to run the virtual environment for codespaces. ***(1 mark)*** 
-Ubuntu Linux.
+1. What is default OS used to run the virtual environment for codespaces. ***(1 mark)***
+
+__Ubuntu Linux.__
 
 2. What are the two options of ram, disk and vcpu configuration you can have in running codespaces . ***(1 mark)*** 
-- 8GB RAM, 32GB disk, 2-core vcpu
-- 16GB RAM, 32BB disk. 4-core vcpu
+
+__- 8GB RAM, 32GB disk, 2-core vcpu.__
+__- 16GB RAM, 32BB disk. 4-core vcpu.__
 
 3. Why must we commit and sync our current work on source control? ***(1 mark)*** 
-To ensure that all of the works are saved and backed up into the main repository. It is also important to ensure a systematic collaboration handling as it allows collaborators to have access to the latest change of the file.
+
+__To ensure that all of the works are saved and backed up into the main repository. It is also important to ensure a systematic collaboration handling as it allows collaborators to have access to the latest change of the file.__
 
 ## Exploring the Terminal
 
@@ -484,14 +489,27 @@ At the terminal, create a new directory called **myroot**, and run a instance of
 
 ***Questions:***
 
-1. Check the permission of the files created in myroot, what user and group is the files created in docker container on the host virtual machine? . ***(2 mark)*** __Fill answer here__.
+1. Check the permission of the files created in myroot, what user and group is the files created in docker container on the host virtual machine? . ***(2 mark)*** 
+
+__- Permissions: ```-rw-r--r--```.__
+
+__- User and Group: ```root root```.__
+
+__This indicates that the files created inside the container have the user and group set to root by default.__
+
 2. Can you change the permission of the files to user codespace.  You will need this to be able to commit and get points for this question. ***(2 mark)***
 ```bash
 //use sudo and chown
 sudo chown -R codespace:codespace myroot
 
 ```
-*** __Fill answer here__.***
+__- Yes, you can change the permissions and ownership of the files to the user codespace by running the following command on the host:__
+
+```bash 
+@SabrinaAzlee ➜ /workspaces/OSProject/myroot (main) $ ls -l /workspaces/OSProject/myroot
+total 0
+-rw-rw-rw- 1 codespace codespace 0 Jun 26 06:27 helloworld.txt
+```
 
 ## You are on your own, create your own static webpage
 
@@ -517,9 +535,22 @@ docker run --detach -v /workspaces/OSProject/webpage:/usr/local/apache2/htdocs/ 
 
 ***Questions:***
 
-1. What is the permission of folder /usr/local/apache/htdocs and what user and group owns the folder? . ***(2 mark)*** __Fill answer here__.
-2. What port is the apache web server running. ***(1 mark)*** __Fill answer here__.
-3. What port is open for http protocol on the host machine? ***(1 mark)*** __Fill answer here__.
+1. What is the permission of folder /usr/local/apache/htdocs and what user and group owns the folder? . ***(2 mark)*** 
+
+__- Permission of folder: ```drwxr-xr-x```.__
+
+__- User and Group that owns the folder: ```root root```.__
+
+
+2. What port is the apache web server running. ***(1 mark)***
+
+__- The Apache web server is running on port 80 inside the Docker container.__
+
+
+3. What port is open for http protocol on the host machine? ***(1 mark)*** 
+
+__- The port that is open for the HTTP protocol on the host machine is 8080.__
+
 
 ## Create SUB Networks
 
