@@ -442,6 +442,7 @@ f65be1987f84   debian    "bash"    19 minutes ago   Exited (137) 18 seconds ago 
 
 @joeynor ➜ /workspaces/OSProject (main) $ docker restart romantic_jackson
 ```
+__Stopping and restarting a container in Docker can affect the persistence of files depending on how the container was originally configured.__
 
 7. Stop the container and delete the container. What happened to your helloworld.txt?
 
@@ -454,11 +455,17 @@ f65be1987f84   debian    "bash"    19 minutes ago   Exited (137) 18 seconds ago 
 
 @joeynor ➜ /workspaces/OSProject (main) $ docker rm romantic_jackson
 ```
+__The helloworld.txt file is deleted because files created inside a Docker container are not persistent by default. They are lost when the container is stopped and removed.__
 
 ***Questions:***
 
-1. Are files in the container persistent. Why not?. ***(1 mark)*** __Fill answer here__.
-2. Can we run two, or three instances of debian linux? . ***(1 mark)*** __Fill answer here__.
+1. Are files in the container persistent. Why not?. ***(1 mark)*** 
+
+__No, files in the container are not persistent. This is because containers are designed to be ephemeral, meaning all data inside the container is lost when the container is removed__.
+
+2. Can we run two, or three instances of debian linux? . ***(1 mark)*** 
+
+__Yes, we can run two or three instances of Debian Linux__.
 
 ## Running your own container with persistent storage
 
