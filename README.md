@@ -372,15 +372,15 @@ Linux codespaces-8d4057 6.5.0-1021-azure #22~22.04.1-Ubuntu SMP Tue Apr 30 16:08
 
 11. What is the available free memory in the system. ***(1 mark)*** 
 
-__from the output of 'free -h' command, the available free memory in the system is 237Mi__.
+__from the output of ```free -h``` command, the available free memory in the system is 237Mi__.
 
 12. What is the available disk space mounted on /workspace. ***(1 mark)*** 
 
-__from the output of 'df' command, the available disk space mounted on /workspace is 20772776 1k blocks__.
+__from the output of ```df``` command, the available disk space mounted on /workspace is 20772776 1k blocks__.
 
 13. Name the version and hardware architecture of the linux Virtual environment. ***(1 mark)*** 
 
-__From the output of 'uname -a' command,__.
+__From the output of ```uname -a``` command,__.
 
 __Version: 6.5.0-1021-azure__
 
@@ -388,21 +388,21 @@ __Hardware Architecture: x86_64__
 
 14. What is the difference between **ls** vs **ls -asl**. ***(1 mark)*** 
 
-__'ls': Lists the names of files and directories in the current directory__.
+__```ls```: Lists the names of files and directories in the current directory__.
 
-__'ls -asl': Includes all files, including hidden files, shows the file size in blocks, and provides a long listing format with detailed information.__
+__```ls -asl```: Includes all files, including hidden files, shows the file size in blocks, and provides a long listing format with detailed information.__
 
 15. What is the TLB size of the Virtual CPU. ***(1 mark)*** 
 
-__From the output of 'cat /proc/cpuinfo' command, the TLB size of the Virtual CPU is 2560 4K pages__.
+__From the output of ```cat /proc/cpuinfo``` command, the TLB size of the Virtual CPU is 2560 4K pages__.
 
 16. What is the CPU speed of the Virtual CPU. ***(1 mark)*** 
 
-__From the output of 'cat /proc/cpuinfo' command, the CPU speed of the Virtual CPU is 3076.246 MHz__.
+__From the output of ```cat /proc/cpuinfo``` command, the CPU speed of the Virtual CPU is 3076.246 MHz__.
 
 17. What is the top running process that consumes the most CPU cycles. ***(1 mark)*** 
 
-__From the output of 'top' command, the top running process that consumes the most CPU cycles is the 'node' process with PID 2290, which is consuming 1.0% of the CPU cycles__.
+__From the output of ```top``` command, the top running process that consumes the most CPU cycles is the 'node' process with PID 2290, which is consuming 1.0% of the CPU cycles__.
 
 ## Running your own container instance.
 
@@ -569,11 +569,42 @@ docker run -itd --net rednet --name c2 busybox sh
 ```
 ***Questions:***
 
-1. Describe what is busybox and what is command switch **--name** is for? . ***(2 mark)*** __Fill answer here__.
-2. Explore the network using the command ```docker network ls```, show the output of your terminal. ***(1 mark)*** __Fill answer here__.
-3. Using ```docker inspect c1``` and ```docker inspect c2``` inscpect the two network. What is the gateway of bluenet and rednet.? ***(1 mark)*** __Fill answer here__.
-4. What is the network address for the running container c1 and c2? ***(1 mark)*** __Fill answer here__.
-5. Using the command ```docker exec c1 ping c2```, which basically tries to do a ping from container c1 to c2. Are you able to ping? Show your output . ***(1 mark)*** __Fill answer here__.
+1. Describe what is busybox and what is command switch **--name** is for? . ***(2 mark)*** 
+
+__BusyBox: A software suite that provides several Unix utilities in a single executable file. In docker containers, BusyBox used as a base image due to its small size, which helps reduce the overall size of the container image.__
+
+__```--name```: Used to assign a specific name to a container.__
+
+2. Explore the network using the command ```docker network ls```, show the output of your terminal. ***(1 mark)*** 
+
+````bash
+@SabrinaAzlee ➜ /workspaces/OSProject/webpage (main) $ docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+33a32a7e7852   bluenet   bridge    local
+c38bb89b3445   bridge    bridge    local
+c34847be42b8   host      host      local
+4e7c54394cb7   none      null      local
+edfe6aa6f4bf   rednet    bridge    local
+````
+
+3. Using ```docker inspect c1``` and ```docker inspect c2``` inscpect the two network. What is the gateway of bluenet and rednet.? ***(1 mark)*** 
+
+__bluenet gateway: 172.18.0.1__.
+__rednet gateway:172.19.0.1__.
+
+4. What is the network address for the running container c1 and c2? ***(1 mark)*** 
+
+__container c1 (bluenet): 172.18.0.2__.
+
+__container c2 (rednet): 172.19.0.2__.
+
+5. Using the command ```docker exec c1 ping c2```, which basically tries to do a ping from container c1 to c2. Are you able to ping? Show your output . ***(1 mark)*** 
+
+```bash
+@SabrinaAzlee ➜ /workspaces/OSProject/webpage (main) $ docker exec c1 ping c2
+ping: bad address 'c2'
+```
+__No, the ping is unable and unsuccessful__.
 
 ## Bridging two SUB Networks
 1. Let's try this again by creating a network to bridge the two containers in the two subnetworks
@@ -585,8 +616,31 @@ docker exec c1 ping c2
 ```
 ***Questions:***
 
-1. Are you able to ping? Show your output . ***(1 mark)*** __Fill answer here__.
-2. What is different from the previous ping in the section above? ***(1 mark)*** __Fill answer here__.
+1. Are you able to ping? Show your output . ***(1 mark)*** 
+
+```bash
+@SabrinaAzlee ➜ /workspaces/OSProject/webpage (main) $ docker network create bridgenet
+943cd62997e9e15d07c34b4cd48edc91ce68601a7baf1af95aafc42fa88dba65
+@SabrinaAzlee ➜ /workspaces/OSProject/webpage (main) $ docker network connect bridgenet c1
+@SabrinaAzlee ➜ /workspaces/OSProject/webpage (main) $ docker network connect bridgenet c2
+@SabrinaAzlee ➜ /workspaces/OSProject/webpage (main) $ docker exec c1 ping c2
+PING c2 (172.20.0.3): 56 data bytes
+64 bytes from 172.20.0.3: seq=0 ttl=64 time=0.130 ms
+64 bytes from 172.20.0.3: seq=1 ttl=64 time=0.060 ms
+64 bytes from 172.20.0.3: seq=2 ttl=64 time=0.070 ms
+64 bytes from 172.20.0.3: seq=3 ttl=64 time=0.116 ms
+64 bytes from 172.20.0.3: seq=4 ttl=64 time=0.062 ms
+64 bytes from 172.20.0.3: seq=5 ttl=64 time=0.077 ms
+64 bytes from 172.20.0.3: seq=6 ttl=64 time=0.083 ms
+```
+__Yes, the ping is successful__.
+
+
+2. What is different from the previous ping in the section above? ***(1 mark)*** 
+
+__Previous ping:__.
+
+__Section above ping:__
 
 ## Intermediate Level (10 marks bonus)
 
