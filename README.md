@@ -68,6 +68,7 @@ __Ubuntu Linux.__
 2. What are the two options of ram, disk and vcpu configuration you can have in running codespaces . ***(1 mark)*** 
 
 __- 8GB RAM, 32GB disk, 2-core vcpu.__
+
 __- 16GB RAM, 32BB disk. 4-core vcpu.__
 
 3. Why must we commit and sync our current work on source control? ***(1 mark)*** 
@@ -638,9 +639,9 @@ __Yes, the ping is successful__.
 
 2. What is different from the previous ping in the section above? ***(1 mark)*** 
 
-__Previous ping:__.
+__Previous ping: Create a new network called bridgenet to connect both c1 and c2 to a single network before attempting to ping__.
 
-__Section above ping:__
+__Section above ping: Directly ping the c1 and c2 after they were connected to two different docker networks.__
 
 ## Intermediate Level (10 marks bonus)
 
