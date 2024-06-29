@@ -783,10 +783,92 @@ You have now set up a Node.js application in a Docker container on nodejsnet net
 
 ***Questions:***
 
-1. What is the output of step 5 above, explain the error? ***(1 mark)*** __Fill answer here__.
-2. Show the instruction needed to make this work. ***(1 mark)*** __Fill answer here__.
+1. What is the output of step 5 above, explain the error? ***(1 mark)***
+
+__```@SabrinaAzlee ➜ /workspaces/OSProject/webpage/nodejs-app (main) $ curl http://localhost:3000/random```__
 
 
+
+2. Show the instruction needed to make this work. ***(1 mark)*** 
+
+__Option 1: Install mysql-client in the Node.js Container__
+
+__Install mysql-client inside the running container:__
+
+```bash
+docker exec -it nodejs-container bash
+apt-get update
+apt-get install -y mysql-client
+```
+__Once installed, try connecting to MySQL again:__
+
+```bash
+mysql -h mysql-container -umyuser -pmypassword mydatabase
+```
+__Proceeding with Option 1: Installing mysql-client in the Node.js Container__
+
+__Steps to Install mysql-client:__
+
+__Enter the Node.js container:__
+```bash
+docker exec -it nodejs-container bash
+```
+
+__Update package lists and install mysql-client:__
+```bash 
+apt-get update
+apt-get install -y mysql-client
+```
+__Connect to the MySQL database:__
+```bash 
+mysql -h mysql-container -umyuser -pmypassword mydatabase
+Full Troubleshooting Steps Recap
+```
+__Create and connect Docker networks:__
+```bash
+docker network create mysqlnet
+docker network create nodejsnet
+```
+
+__Run MySQL container:__
+
+```bash
+docker run --name mysql-container --network mysqlnet -e MYSQL_ROOT_PASSWORD=rootpassword -e MYSQL_DATABASE=mydatabase -e MYSQL_USER=myuser -e MYSQL_PASSWORD=mypassword -d mysql:latest
+```
+
+__Run Node.js container:__
+
+```bash
+docker run --name nodejs-container --network nodejsnet -p 3000:3000 -d nodejs-app
+```
+
+__Connect Node.js container to MySQL network:__
+
+```bash
+docker network connect mysqlnet nodejs-container
+```
+
+__Install mysql-client in Node.js container:__
+
+```bash
+docker exec -it nodejs-container bash
+apt-get update
+apt-get install -y mysql-client
+```
+
+__Connect to MySQL from Node.js container:__
+
+```bash
+mysql -h mysql-container -umyuser -pmypassword mydatabase
+```
+
+__Check logs and test application:__
+
+```bash
+docker logs nodejs-container
+curl http://localhost:3000/random
+```
+__By following these steps, it should be able to troubleshoot and resolve the connection issue between the Node.js application and the MySQL database.__
 
 ## What to submit
 
